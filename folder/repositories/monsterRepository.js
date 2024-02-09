@@ -1,3 +1,5 @@
+// Code adapted from https://github.com/mrchenliang/learning-node
+
 import Monster from "../models/monsterModel.js";
 
 export const getMonstersFromRepository = async (query) => {
@@ -8,7 +10,6 @@ export const getMonstersFromRepository = async (query) => {
     throw Error("Error while fetching monsters: ", e);
   }
 }
-
 
 export const updateMonstersInRepository = async (query, update) => {
   try {
@@ -34,7 +35,7 @@ export const deleteMonsterFromRepository = async (query) => {
 
 export const createMonsterInRepository = async (payload) => {
   try {
-    const newMonster = new Superhero(payload);
+    const newMonster = new Monster(payload);
     const savedMonster = await newMonster.save();
     return savedMonster;
   } catch (e) {

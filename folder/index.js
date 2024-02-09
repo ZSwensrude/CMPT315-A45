@@ -1,3 +1,5 @@
+// Code adapted from https://github.com/mrchenliang/learning-node
+
 import express from "express";
 import connectDB from "./database/monsterDB.js";
 import bodyParser from 'body-parser';
@@ -17,7 +19,7 @@ app.use('/monsters', router);
 
 // Not found
 app.use(function (req, res, next) {
-  res.status(404).send("Sorry can't find that!");
+  res.status(404).send("Sorry can't find that! Go to /monsters to interact with database");
 });
   
 // Error
