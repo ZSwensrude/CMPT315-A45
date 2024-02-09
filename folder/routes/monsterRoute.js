@@ -1,8 +1,12 @@
 import Express from "express";
-
+import { getMonsters } from "../controllers/monsterController.js";
 
 const router = Express.Router();
 
-
+router.get("/", getMonsters);
+// router.get("/:id", getSuperhero);
+// router.post("/", createSuperHero);
+// router.patch("/:id", updateSuperHero);
+// router.delete("/:id", deleteSuperHero);
 
 export default router;

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 mongoose.set('strictQuery', true);
 
 const connectDB = async () => {
-  const url = 'mongodv://localhost:27017/monsters';
+  const url = 'mongodb://localhost:27017/monsters';
   try {
     const connection = await mongoose.connect(url, {
       useUnifiedTopology: true,

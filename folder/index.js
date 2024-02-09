@@ -1,13 +1,19 @@
 import express from "express";
-import home from "./home.js";
-import products from "./products.js";
+import connectDB from "./database/monsterDB.js";
+import bodyParser from 'body-parser';
+import router from "./routes/monsterRoute.js";
 
 const app = express();
 const port = 3000;
 
-// Routers
-app.use("/", home);
-app.use("/products", products);
+connectDB();
+
+// allows app to deal with url encoded and json requests
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// set to use the monsters router if at /monsters
+app.use('/monsters', router);
 
 // Not found
 app.use(function (req, res, next) {
