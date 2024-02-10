@@ -50,11 +50,16 @@ export const updateMonster = async (req, res) => {
 }
 
 export const deleteMonster = async (req, res) => {
+  const { id } = req.params;
   try {
-    res.status(200).send("oki");
-
+    const monster = await deleteMonsterFromRepository(id);
+    if (monster) {
+      res.status(200).send("The following monster was deleted: "+ monster);
+    } else {
+      res.status(400).send("The monster you are trying to delete with id "+ id +" likely does not exist.");
+    }
   } catch (e) {
     console.log("Failed to : ", e); 
-    res.status(400).send("Delete failed");
+    res.status(400).send("Monster delete failed.");
   }
 }

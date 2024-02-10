@@ -33,9 +33,9 @@ export const updateMonstersInRepository = async (id, query) => {
   } 
 }
 
-export const deleteMonsterFromRepository = async (query) => {
+export const deleteMonsterFromRepository = async (id) => {
   try {
-    const monster = await Monster.findOneAndDelete({ ...query });
+    const monster = await Monster.findOneAndDelete({ id: id });
     return monster;
   } catch (e) {
     throw Error("Error while deleting a monster: ", e);
