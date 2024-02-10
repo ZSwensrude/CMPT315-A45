@@ -33,8 +33,23 @@ export const deleteMonsterFromRepository = async (query) => {
   }
 }
 
+// This func gets the highest id in the database and increments it by one so its
+// always a unique id. The main reason i went with this as opposed to another method
+// of generating unique ids is to keep the id number small and simple, rather than
+// mongo's id system which is a complicated number
+const getUniqueMonsterID = async () => {
+  const maxIdDocument = await Monster.findOne({}, { id: 1 }).sort({ id: -1 });
+  const maxId = maxIdDocument ? maxIdDocument.id : 0;
+  return maxId + 1;
+}
+
 export const createMonsterInRepository = async (payload) => {
   try {
+    // get a new id
+    const newId = await getUniqueMonsterID();
+    // add it to the payload obj
+    payload = {...payload, id: newId};
+    // then add to the DB
     const newMonster = new Monster(payload);
     const savedMonster = await newMonster.save();
     return savedMonster;

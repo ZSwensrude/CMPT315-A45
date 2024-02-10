@@ -14,7 +14,7 @@ const monsterSchema = new mongoose.Schema(
         lng: {type: String}
       }
     },
-    id: {type: String, required: true},
+    id: {type: Number, required: true},
     name: {type: String, required: true},
     username: {type: String},
     email: {type: String, required: true},
@@ -27,7 +27,7 @@ const monsterSchema = new mongoose.Schema(
     },
     image_url: {type: String, required: true}
   },
-  { timestamps: true, strictQuery: true }
+  { timestamps: true, strictQuery: true, versionKey: false }
 )
 
 const Monster = mongoose.model("Monster", monsterSchema);
