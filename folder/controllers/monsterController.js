@@ -39,7 +39,7 @@ export const updateMonster = async (req, res) => {
     const monster = await updateMonstersInRepository(id, req);
     // returns -1 if it does not exist in database
     if (monster === -1) {
-      res.status(400).send("The monster you are trying to update with id " + id + " does not exist.")
+      res.status(400).send("The monster you are trying to update with id " + id + " likely does not exist.")
     } else {
       res.status(200).send(monster);
     }
@@ -56,10 +56,10 @@ export const deleteMonster = async (req, res) => {
     if (monster) {
       res.status(200).send("The following monster was deleted: "+ monster);
     } else {
-      res.status(400).send("The monster you are trying to delete with id "+ id +" likely does not exist.");
+      res.status(400).send("The monster you are trying to delete with id "+ id +" likely does not exist or was already deleted.");
     }
   } catch (e) {
-    console.log("Failed to : ", e); 
+    console.log("Failed to delete monster: ", e); 
     res.status(400).send("Monster delete failed.");
   }
 }
