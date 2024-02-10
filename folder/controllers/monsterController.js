@@ -29,7 +29,7 @@ export const createMonster = async (req, res) => {
     res.status(201).send(monster);
   } catch (e) {
     console.log("Failed to create monster: ", e); 
-    res.status(400).send("Create failed");
+    res.status(400).send('Create failed. You likely did not include all required fields: "name":, "address": {"city":}, "image_url": ');
   }
 }
 
