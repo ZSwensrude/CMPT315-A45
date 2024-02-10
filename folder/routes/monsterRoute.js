@@ -28,7 +28,7 @@ router.post("/", createMonster);
 */
 router.patch("/:id", updateMonster);
 
-
+// example delete: localhost:3000/monsters/3
 router.delete("/:id", deleteMonster);
 
 export default router;
