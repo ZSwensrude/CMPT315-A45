@@ -1,14 +1,16 @@
 // Code adapted from https://github.com/mrchenliang/learning-node
-
+import dotenv from 'dotenv';
 import express from "express";
 import connectDB from "./database/monsterDB.js";
 import bodyParser from 'body-parser';
 import router from "./routes/monsterRoute.js";
 
-const app = express();
-const port = 3000;
+dotenv.config();
 
-connectDB();
+const app = express();
+const port = process.env.PORT || 3000;
+
+const url = await connectDB();
 
 // allows app to deal with url encoded and json requests
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,6 +31,6 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, function () {
-  console.log(`🚀 Fire app listening on port ${port}!`);
+  console.log(`🚀 Fire app listening on port ${port}, connected to ${url}!`);
 });
   
