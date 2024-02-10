@@ -11,11 +11,20 @@ export const getMonstersFromRepository = async (query) => {
   }
 }
 
-export const updateMonstersInRepository = async (query, update) => {
+const monsterExists = async (mid) => {
+  const monster = await Monster.findOne({ id: mid });
+  return monster ? true : false;
+}
+
+export const updateMonstersInRepository = async (id, query) => {
+  let exists = await monsterExists(id);
+  if (!exists) {
+    return -1;
+  }
   try {
     const monster = await Monster.findOneAndUpdate(
-      { ...query },
-      { ...update },
+      { id: id },
+      { $set: query.body },
       { new: true }
     ).lean();
     return monster;

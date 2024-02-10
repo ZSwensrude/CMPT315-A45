@@ -5,7 +5,7 @@ const router = Express.Router();
 
 // example get: http://localhost:3000/monsters/
 router.get("/", getMonsters);
-// example get: http://localhost:3000/monsters/65c693a429dce3811bd135c0
+// example get: http://localhost:3000/monsters/3
 router.get("/:id", getMonster);
 /* example: post with the following object in the body:
 {
